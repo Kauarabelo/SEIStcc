@@ -1,10 +1,10 @@
-package com.seis.SeisProject;
+package com.seis.projetoseis;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SeisProjectApplicationTests {
+class ProjetoseisApplicationTests {
 
 	@Test
 	void contextLoads() {
