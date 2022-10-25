@@ -15,7 +15,7 @@ import lombok.Data;
 public class PostDTO {
     
     private String id;
-    private String title;
-    private String content;
+    private String nome;
+    private String localizacao;
     
 }

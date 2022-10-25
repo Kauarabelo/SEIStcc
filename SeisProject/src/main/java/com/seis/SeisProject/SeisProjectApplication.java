@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SeisProjectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SeisProjectApplication.class, args);
+            ClassLoader classLoader = SeisProjectApplication.class.getClassLoader();
+            
+            SpringApplication.run(SeisProjectApplication.class, args);
 	}
 
 }

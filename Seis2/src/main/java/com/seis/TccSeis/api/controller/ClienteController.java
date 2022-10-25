@@ -4,13 +4,13 @@
  * and open the template in the editor.
  */
 package com.seis.TccSeis.api.controller;
-
-import com.seis.TccSeis.domain.model.PostDTO;
-import com.seis.TccSeis.domain.service.PostManagementService;
+;
+import com.seis.TccSeis.domain.model.ClienteModel;
+import org.springframework.web.bind.annotation.*;
+import com.seis.TccSeis.domain.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 /**
  *
@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@RequestMapping(value = "/post")
-public class PostController {
+@RequestMapping(value = "/cliente")
+public class ClienteController {
     
     @Autowired
-    private PostManagementService service;
+    private ClienteService service;
 
     @GetMapping(value = "/greet/{name}")
     public String greet(@PathVariable(value = "name") String name){
@@ -36,13 +36,13 @@ public class PostController {
     
     
     @PostMapping(value = "/add")
-    public ResponseEntity add(@RequestBody PostDTO post){
-        return new ResponseEntity(service.add(post), HttpStatus.OK);
+    public ResponseEntity add(@RequestBody ClienteModel cliente){
+        return new ResponseEntity(service.add(cliente), HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity edit(@PathVariable(value = "id") String id, @RequestBody PostDTO post){
-        return new ResponseEntity(service.edit(id,post), HttpStatus.OK);
+    public ResponseEntity edit(@PathVariable(value = "id") String id, @RequestBody ClienteModel cliente){
+        return new ResponseEntity(service.edit(id,cliente), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/delete/{id}")

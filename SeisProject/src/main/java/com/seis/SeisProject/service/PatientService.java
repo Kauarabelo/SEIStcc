@@ -7,7 +7,7 @@ import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
-import POJO.Patient;
+import com.seis.SeisProject.domain.model.Cliente;
 
 import java.util.concurrent.ExecutionException;
 
@@ -17,30 +17,30 @@ public class PatientService {
 
     public static final String COL_NAME="users";
 
-    public String savePatientDetails(Patient patient) throws InterruptedException, ExecutionException {
+    public String savePatientDetails(Cliente patient) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(patient.getName()).set(patient);
         return collectionsApiFuture.get().getUpdateTime().toString();
     }
 
-    public Patient getPatientDetails(String name) throws InterruptedException, ExecutionException {
+    public Cliente getPatientDetails(String name) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         DocumentReference documentReference = dbFirestore.collection(COL_NAME).document(name);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
 
         DocumentSnapshot document = future.get();
 
-        Patient patient = null;
+        Cliente patient = null;
 
         if(document.exists()) {
-            patient = document.toObject(Patient.class);
+            patient = document.toObject(Cliente.class);
             return patient;
         }else {
             return null;
         }
     }
 
-    public String updatePatientDetails(Patient person) throws InterruptedException, ExecutionException {
+    public String updatePatientDetails(Cliente person) throws InterruptedException, ExecutionException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(COL_NAME).document(person.getName()).set(person);
         return collectionsApiFuture.get().getUpdateTime().toString();

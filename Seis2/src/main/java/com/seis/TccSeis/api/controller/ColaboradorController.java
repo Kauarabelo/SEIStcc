@@ -5,12 +5,12 @@
  */
 package com.seis.TccSeis.api.controller;
 
-import com.seis.TccSeis.domain.model.PostDTO;
-import com.seis.TccSeis.domain.service.PostManagementService;
+import org.springframework.web.bind.annotation.*;
+import com.seis.TccSeis.domain.model.ColaboradorModel;
+import com.seis.TccSeis.domain.service.ColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 /**
  *
@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @RestController
-@RequestMapping(value = "/post")
-public class PostController {
+@RequestMapping(value = "/cliente")
+public class ColaboradorController {
     
     @Autowired
-    private PostManagementService service;
+    private ColaboradorService service;
 
     @GetMapping(value = "/greet/{name}")
     public String greet(@PathVariable(value = "name") String name){
@@ -36,13 +36,13 @@ public class PostController {
     
     
     @PostMapping(value = "/add")
-    public ResponseEntity add(@RequestBody PostDTO post){
-        return new ResponseEntity(service.add(post), HttpStatus.OK);
+    public ResponseEntity add(@RequestBody ColaboradorModel colaborador){
+        return new ResponseEntity(service.add(colaborador), HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity edit(@PathVariable(value = "id") String id, @RequestBody PostDTO post){
-        return new ResponseEntity(service.edit(id,post), HttpStatus.OK);
+    public ResponseEntity edit(@PathVariable(value = "id") String id, @RequestBody ColaboradorModel colaborador){
+        return new ResponseEntity(service.edit(id,colaborador), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/delete/{id}")

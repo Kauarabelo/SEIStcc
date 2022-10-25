@@ -10,37 +10,37 @@ import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
-import com.seis.TccSeis.api.firebase.FirebaseInitializer;
-import com.seis.TccSeis.domain.model.PostDTO;
-import com.seis.TccSeis.domain.service.PostManagementService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.seis.TccSeis.api.firebase.FirebaseInitializer;
+import com.seis.TccSeis.domain.service.ClienteService;
+import com.seis.TccSeis.domain.model.ClienteModel;
 
 /**
  *
  * @author devsys-a
  */
 @Service
-public class PostManagementServiceImpl implements PostManagementService {
+public class ClienteManagementServiceImpl implements ClienteService {
 
     @Autowired
     private FirebaseInitializer firebase;
 
     @Override
-    public List<PostDTO> list() {
-        List<PostDTO> response = new ArrayList<>();
-        PostDTO post;
+    public List<ClienteModel> list() {
+        List<ClienteModel> response = new ArrayList<>();
+        ClienteModel cliente;
 
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection().get();
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
-                post = doc.toObject(PostDTO.class);
-                post.setId(doc.getId());
-                response.add(post);
+                cliente = doc.toObject(ClienteModel.class);
+                cliente.setId(doc.getId());
+                response.add(cliente);
             }
             return response;
         } catch (Exception e) {
@@ -50,8 +50,8 @@ public class PostManagementServiceImpl implements PostManagementService {
     }
 
     @Override
-    public Boolean add(PostDTO post) {
-        Map<String, Object> docData = getDocData(post);
+    public Boolean add(ClienteModel cliente) {
+        Map<String, Object> docData = getDocData(cliente);
 
         ApiFuture<WriteResult> writeResultApiFuture = getCollection().document().create(docData);
 
@@ -68,8 +68,8 @@ public class PostManagementServiceImpl implements PostManagementService {
 
 
     @Override
-    public Boolean edit(String id, PostDTO post) {
-        Map<String, Object> docData = getDocData(post);
+    public Boolean edit(String id, ClienteModel cliente) {
+        Map<String, Object> docData = getDocData(cliente);
         ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id).set(docData);
         try {
             if(null != writeResultApiFuture.get()){
@@ -95,14 +95,14 @@ public class PostManagementServiceImpl implements PostManagementService {
     }
 
     private CollectionReference getCollection() {
-        return firebase.getFirestore().collection("post");
+        return firebase.getFirestore().collection("cliente");
     }
 
-    private Map<String, Object> getDocData(PostDTO post) {
+    private Map<String, Object> getDocData(ClienteModel cliente) {
         Map<String, Object> docData = new HashMap<>();
-        docData.put("id", post.getId());
-        docData.put("nome", post.getNome());
-        docData.put("localizac", post.getLocalizacao());
+        docData.put("id", cliente.getId());
+        docData.put("nome", cliente.getNome());
+        docData.put("localizac", cliente.getLocalizacao());
         return docData;
     }
     
