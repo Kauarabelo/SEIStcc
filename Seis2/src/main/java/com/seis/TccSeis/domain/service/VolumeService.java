@@ -5,7 +5,6 @@
  */
 package com.seis.TccSeis.domain.service;
 
-import com.seis.TccSeis.domain.model.TransportadorModel;
 import com.seis.TccSeis.domain.model.VolumeModel;
 import java.util.List;
 

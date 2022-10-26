@@ -17,31 +17,31 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.seis.TccSeis.api.firebase.FirebaseInitializer;
-import com.seis.TccSeis.domain.service.ClienteService;
-import com.seis.TccSeis.domain.model.ClienteModel;
+import com.seis.TccSeis.domain.model.VolumeModel;
+import com.seis.TccSeis.domain.service.VolumeService;
 
 /**
  *
  * @author devsys-a
  */
 @Service
-public class ClienteManagementServiceImpl implements ClienteService {
+public class VolumeManagementServiceImpl implements VolumeService {
 
     @Autowired
     private FirebaseInitializer firebase;
 
     @Override
-    public List<ClienteModel> list() {
-        List<ClienteModel> response = new ArrayList<>();
-        ClienteModel cliente;
+    public List<VolumeModel> list() {
+        List<VolumeModel> response = new ArrayList<>();
+        VolumeModel volume;
 
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection().get();
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
-                cliente = doc.toObject(ClienteModel.class);
+                volume = doc.toObject(VolumeModel.class);
                 //Arrumar doc.getId
-                cliente.setId_Cliente(doc.getId());
-                response.add(cliente);
+                volume.setId_Volume(doc.getId());
+                response.add(volume);
             }
             return response;
         } catch (Exception e) {
@@ -51,8 +51,8 @@ public class ClienteManagementServiceImpl implements ClienteService {
     }
 
     @Override
-    public Boolean add(ClienteModel cliente) {
-        Map<String, Object> docData = getDocData(cliente);
+    public Boolean add(VolumeModel volume) {
+        Map<String, Object> docData = getDocData(volume);
 
         ApiFuture<WriteResult> writeResultApiFuture = getCollection().document().create(docData);
 
@@ -69,9 +69,9 @@ public class ClienteManagementServiceImpl implements ClienteService {
 
 
     @Override
-    public Boolean edit(String id_Cliente, ClienteModel cliente) {
-        Map<String, Object> docData = getDocData(cliente);
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Cliente).set(docData);
+    public Boolean edit(String id_Volume, VolumeModel volume) {
+        Map<String, Object> docData = getDocData(volume);
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Volume).set(docData);
         try {
             if(null != writeResultApiFuture.get()){
                 return Boolean.TRUE;
@@ -83,8 +83,8 @@ public class ClienteManagementServiceImpl implements ClienteService {
     }
 
     @Override
-    public Boolean delete(String id_Cliente) {
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Cliente).delete();
+    public Boolean delete(String id_Volume) {
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Volume).delete();
         try {
             if(null != writeResultApiFuture.get()){
                 return Boolean.TRUE;
@@ -96,20 +96,24 @@ public class ClienteManagementServiceImpl implements ClienteService {
     }
 
     private CollectionReference getCollection() {
-        return firebase.getFirestore().collection("Cliente");
+        return firebase.getFirestore().collection("Volume");
     }
 
-    private Map<String, Object> getDocData(ClienteModel cliente) {
+    private Map<String, Object> getDocData(VolumeModel volume) {
         Map<String, Object> docData = new HashMap<>();
-        docData.put("id", cliente.getId_Cliente());
-        docData.put("nome", cliente.getNome());
-        docData.put("email", cliente.getEmail());
-        docData.put("telefone", cliente.getTelefone());
-        docData.put("cpf", cliente.getCpf());
-        docData.put("cidade", cliente.getCidade());
-        docData.put("uf", cliente.getUf());
-        docData.put("cep", cliente.getCep());
-        docData.put("tipo", cliente.getTipo());
+        docData.put("id", volume.getId_Volume());
+        docData.put("peso", volume.getPeso());
+        docData.put("altura", volume.getAltura());
+        docData.put("largura", volume.getLargura());
+        docData.put("profundidade", volume.getProfundidade());
+        docData.put("destino", volume.getDestino());
+        docData.put("origem", volume.getOrigem());
+        docData.put("status", volume.getStatus());
+        docData.put("remetente", volume.getRemetente());
+        docData.put("destinatario", volume.getDestinatario());
+        docData.put("transportador", volume.getTransportador());
+        docData.put("baseOrigem", volume.getBaseOrigem());
+        docData.put("baseColeta", volume.getBaseColeta());
         return docData;
     }
     

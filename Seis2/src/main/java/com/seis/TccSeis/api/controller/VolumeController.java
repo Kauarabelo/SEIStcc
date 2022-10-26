@@ -18,7 +18,7 @@ import org.springframework.http.ResponseEntity;
  */
 
 @RestController
-@RequestMapping(value = "/cliente")
+@RequestMapping(value = "/volume")
 public class VolumeController {
     
     @Autowired
