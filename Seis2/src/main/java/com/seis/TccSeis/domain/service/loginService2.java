@@ -5,20 +5,20 @@
  */
 package com.seis.TccSeis.domain.service;
 
-import com.seis.TccSeis.domain.model.ClienteModel;
+import com.seis.TccSeis.domain.model.loginModel2;
 import java.util.List;
 
 /**
  *
  * @author devsys-a
  */
-public interface ClienteService {
+public interface loginService2 {
     
-    List<ClienteModel> list();
+    List<loginModel2> list();
 
-    Boolean add(ClienteModel cliente);
+    Boolean add(loginModel2 login);
 
-    Boolean edit(String id,ClienteModel cliente);
+    Boolean edit(String id,loginModel2 login);
 
     Boolean delete(String id); 
 }

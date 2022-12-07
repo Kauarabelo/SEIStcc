@@ -5,20 +5,21 @@
  */
 package com.seis.TccSeis.domain.service;
 
-import com.seis.TccSeis.domain.model.ClienteModel;
+import com.seis.TccSeis.domain.model.DestinatarioModel;
 import java.util.List;
 
 /**
  *
  * @author devsys-a
  */
-public interface ClienteService {
+public interface DestinatarioService {
     
-    List<ClienteModel> list();
+    List<DestinatarioModel> list();
 
-    Boolean add(ClienteModel cliente);
+    Boolean add(DestinatarioModel destinatario);
 
-    Boolean edit(String id,ClienteModel cliente);
+    Boolean edit(String id,DestinatarioModel destinatario);
 
-    Boolean delete(String id); 
+    Boolean delete(String id);
+    
 }

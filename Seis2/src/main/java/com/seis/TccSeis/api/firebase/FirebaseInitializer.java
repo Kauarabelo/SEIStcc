@@ -32,6 +32,8 @@ public class FirebaseInitializer {
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .setDatabaseUrl("https://seis-7c7c6-default-rtdb.firebaseio.com/")
                 .build();
+        
+        
 
         if(FirebaseApp.getApps().isEmpty()){
             FirebaseApp.initializeApp(options);
