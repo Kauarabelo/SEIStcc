@@ -17,8 +17,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.seis.TccSeis.api.firebase.FirebaseInitializer;
-import com.seis.TccSeis.domain.service.loginService2;
-import com.seis.TccSeis.domain.model.loginModel2;
+import com.seis.TccSeis.domain.repository.loginService2;
+import com.seis.TccSeis.domain.model.User;
 
 /**
  *
@@ -31,14 +31,14 @@ public class loginManagementServiceImpl2 implements loginService2 {
     private FirebaseInitializer firebase;
 
     @Override
-    public List<loginModel2> list() {
-        List<loginModel2> response = new ArrayList<>();
-        loginModel2 login;
+    public List<User> list() {
+        List<User> response = new ArrayList<>();
+        User login;
 
         ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection().get();
         try {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
-                login = doc.toObject(loginModel2.class);
+                login = doc.toObject(User.class);
                 //Arrumar doc.getId
                 login.setEmail(doc.getId());
                 response.add(login);
@@ -51,7 +51,7 @@ public class loginManagementServiceImpl2 implements loginService2 {
     }
 
     @Override
-    public Boolean add(loginModel2 login) {
+    public Boolean add(User login) {
         Map<String, Object> docData = getDocData(login);
 
         ApiFuture<WriteResult> writeResultApiFuture = getCollection().document().create(docData);
@@ -69,7 +69,7 @@ public class loginManagementServiceImpl2 implements loginService2 {
 
 
     @Override
-    public Boolean edit(String id_Login, loginModel2 login) {
+    public Boolean edit(String id_Login, User login) {
         Map<String, Object> docData = getDocData(login);
         ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Login).set(docData);
         try {
@@ -99,7 +99,7 @@ public class loginManagementServiceImpl2 implements loginService2 {
         return firebase.getFirestore().collection("Login");
     }
 
-    private Map<String, Object> getDocData(loginModel2 login) {
+    private Map<String, Object> getDocData(User login) {
         Map<String, Object> docData = new HashMap<>();
         docData.put("email", login.getEmail());
         docData.put("password", login.getPassword());

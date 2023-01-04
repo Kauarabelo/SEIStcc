@@ -7,7 +7,7 @@ package com.seis.TccSeis.api.controller;
 
 import org.springframework.web.bind.annotation.*;
 import com.seis.TccSeis.domain.model.ColaboradorModel;
-import com.seis.TccSeis.domain.service.ColaboradorService;
+import com.seis.TccSeis.domain.repository.ColaboradorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

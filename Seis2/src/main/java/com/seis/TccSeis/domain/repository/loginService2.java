@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.seis.TccSeis.domain.service;
+package com.seis.TccSeis.domain.repository;
 
-import com.seis.TccSeis.domain.model.ClienteModel;
+import com.seis.TccSeis.domain.model.User;
 import java.util.List;
 
 /**
  *
  * @author devsys-a
  */
-public interface ClienteService {
+public interface loginService2 {
     
-    List<ClienteModel> list();
+    List<User> list();
 
-    Boolean add(ClienteModel cliente);
+    Boolean add(User login);
 
-    Boolean edit(String id,ClienteModel cliente);
+    Boolean edit(String id,User login);
 
     Boolean delete(String id); 
 }

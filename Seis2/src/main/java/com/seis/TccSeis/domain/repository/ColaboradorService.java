@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.seis.TccSeis.domain.service;
+package com.seis.TccSeis.domain.repository;
 
-import com.seis.TccSeis.domain.model.VolumeModel;
+import com.seis.TccSeis.domain.model.ColaboradorModel;
 import java.util.List;
 
 /**
  *
  * @author devsys-a
  */
-public interface VolumeService {
+public interface ColaboradorService {
     
-    List<VolumeModel> list();
+    List<ColaboradorModel> list();
 
-    Boolean add(VolumeModel volume);
+    Boolean add(ColaboradorModel colaborador);
 
-    Boolean edit(String id,VolumeModel volume);
+    Boolean edit(String id,ColaboradorModel colaborador);
 
     Boolean delete(String id);
     

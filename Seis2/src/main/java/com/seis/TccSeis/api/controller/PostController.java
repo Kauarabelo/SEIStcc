@@ -6,7 +6,7 @@
 package com.seis.TccSeis.api.controller;
 
 import com.seis.TccSeis.domain.model.PostDTO;
-import com.seis.TccSeis.domain.service.PostManagementService;
+import com.seis.TccSeis.domain.repository.PostManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

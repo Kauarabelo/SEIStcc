@@ -4,8 +4,8 @@
  */
 package com.seis.TccSeis.api.controller;
 
-import com.seis.TccSeis.domain.model.loginModel2;
-import com.seis.TccSeis.domain.service.loginService2;
+import com.seis.TccSeis.domain.model.User;
+import com.seis.TccSeis.domain.repository.loginService2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,12 +44,12 @@ public class LoginController2 {
     
     @PostMapping(value = "/add")
     @CrossOrigin("http://localhost:19006")
-    public ResponseEntity add(@RequestBody loginModel2 login){
+    public ResponseEntity add(@RequestBody User login){
         return new ResponseEntity(service.add(login), HttpStatus.OK);
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity edit(@PathVariable(value = "id") String id, @RequestBody loginModel2 login){
+    public ResponseEntity edit(@PathVariable(value = "id") String id, @RequestBody User login){
         return new ResponseEntity(service.edit(id,login), HttpStatus.OK);
     }
 

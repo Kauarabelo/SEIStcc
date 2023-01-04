@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.seis.TccSeis.domain.service;
+package com.seis.TccSeis.domain.repository;
 
-import com.seis.TccSeis.domain.model.ColaboradorModel;
+import com.seis.TccSeis.domain.model.PostDTO;
 import java.util.List;
 
 /**
  *
  * @author devsys-a
  */
-public interface ColaboradorService {
+public interface PostManagementService {
     
-    List<ColaboradorModel> list();
+    List<PostDTO> list();
 
-    Boolean add(ColaboradorModel colaborador);
+    Boolean add(PostDTO post);
 
-    Boolean edit(String id,ColaboradorModel colaborador);
+    Boolean edit(String id,PostDTO post);
 
     Boolean delete(String id);
     

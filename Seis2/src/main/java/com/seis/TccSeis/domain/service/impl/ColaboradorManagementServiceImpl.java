@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.seis.TccSeis.api.firebase.FirebaseInitializer;
 import com.seis.TccSeis.domain.model.ColaboradorModel;
-import com.seis.TccSeis.domain.service.ColaboradorService;
+import com.seis.TccSeis.domain.repository.ColaboradorService;
 
         
 

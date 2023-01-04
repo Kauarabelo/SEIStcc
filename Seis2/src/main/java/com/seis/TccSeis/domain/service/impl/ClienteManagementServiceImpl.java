@@ -17,7 +17,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.seis.TccSeis.api.firebase.FirebaseInitializer;
-import com.seis.TccSeis.domain.service.ClienteService;
+import com.seis.TccSeis.domain.repository.ClienteService;
 import com.seis.TccSeis.domain.model.ClienteModel;
 
 /**

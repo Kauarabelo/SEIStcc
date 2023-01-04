@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.seis.TccSeis.api.firebase.FirebaseInitializer;
 import com.seis.TccSeis.domain.model.TransportadorModel;
-import com.seis.TccSeis.domain.service.TransportadorService;
+import com.seis.TccSeis.domain.repository.TransportadorService;
 
         
 

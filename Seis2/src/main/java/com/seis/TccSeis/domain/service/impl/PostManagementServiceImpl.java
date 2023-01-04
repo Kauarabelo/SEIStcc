@@ -12,7 +12,7 @@ import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 import com.seis.TccSeis.api.firebase.FirebaseInitializer;
 import com.seis.TccSeis.domain.model.PostDTO;
-import com.seis.TccSeis.domain.service.PostManagementService;
+import com.seis.TccSeis.domain.repository.PostManagementService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
