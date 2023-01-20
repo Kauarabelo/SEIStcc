@@ -15,6 +15,8 @@ import java.util.List;
 public interface ClienteService {
     
     List<ClienteModel> list();
+    
+    List<ClienteModel> listId();
 
     Boolean add(ClienteModel cliente);
 

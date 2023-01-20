@@ -40,7 +40,7 @@ public class ClienteManagementServiceImpl implements ClienteService {
             for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
                 cliente = doc.toObject(ClienteModel.class);
                 //Arrumar doc.getId
-                cliente.setId_Cliente(doc.getId());
+                cliente.setCpf(doc.getId());
                 response.add(cliente);
             }
             return response;
@@ -51,13 +51,46 @@ public class ClienteManagementServiceImpl implements ClienteService {
     }
 
     @Override
+    public List<ClienteModel> listId(String cpf) {
+        List<ClienteModel> response = new ArrayList<>();
+        ClienteModel cliente;
+        ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection().get().doc.whereEqualTo("cpf", "cpf");
+        try {
+            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
+                if (whereEqualTo("cpf", "cpf")) {
+                    cliente = doc.toObject(ClienteModel.class);
+                    //Arrumar doc.getId
+                    cliente.setCpf(doc.getId());
+                    response.add(cliente);
+                }
+            }
+            return response;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Boolean delete(String id_Cliente) {
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Cliente).delete();
+        try {
+            if (null != writeResultApiFuture.get()) {
+                return Boolean.TRUE;
+            }
+            return Boolean.FALSE;
+        } catch (Exception e) {
+            return Boolean.FALSE;
+        }
+    }
+
+    @Override
     public Boolean add(ClienteModel cliente) {
         Map<String, Object> docData = getDocData(cliente);
 
         ApiFuture<WriteResult> writeResultApiFuture = getCollection().document().create(docData);
 
         try {
-            if(null != writeResultApiFuture.get()){
+            if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
             }
             return Boolean.FALSE;
@@ -67,13 +100,12 @@ public class ClienteManagementServiceImpl implements ClienteService {
         }
     }
 
-
     @Override
     public Boolean edit(String id_Cliente, ClienteModel cliente) {
         Map<String, Object> docData = getDocData(cliente);
         ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Cliente).set(docData);
         try {
-            if(null != writeResultApiFuture.get()){
+            if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
             }
             return Boolean.FALSE;
@@ -86,7 +118,7 @@ public class ClienteManagementServiceImpl implements ClienteService {
     public Boolean delete(String id_Cliente) {
         ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Cliente).delete();
         try {
-            if(null != writeResultApiFuture.get()){
+            if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
             }
             return Boolean.FALSE;
@@ -101,7 +133,6 @@ public class ClienteManagementServiceImpl implements ClienteService {
 
     private Map<String, Object> getDocData(ClienteModel cliente) {
         Map<String, Object> docData = new HashMap<>();
-        docData.put("id", cliente.getId_Cliente());
         docData.put("nome", cliente.getNome());
         docData.put("email", cliente.getEmail());
         docData.put("telefone", cliente.getTelefone());
@@ -109,8 +140,22 @@ public class ClienteManagementServiceImpl implements ClienteService {
         docData.put("cidade", cliente.getCidade());
         docData.put("uf", cliente.getUf());
         docData.put("cep", cliente.getCep());
-        docData.put("tipo", cliente.getTipo());
+
+        //Implementação Volume
+        docData.put("peso", cliente.getPeso());
+        docData.put("altura", cliente.getAltura());
+        docData.put("largura", cliente.getLargura());
+        docData.put("profundidade", cliente.getProfundidade());
+        docData.put("destino", cliente.getDestino());
+        docData.put("origem", cliente.getOrigem());
+        docData.put("status", cliente.getStatus());
+        docData.put("remetente", cliente.getRemetente());
+        docData.put("destinatario", cliente.getDestinatario());
+        docData.put("transportador", cliente.getTransportador());
+        docData.put("baseOrigem", cliente.getBaseOrigem());
+        docData.put("baseColeta", cliente.getBaseColeta());
+
         return docData;
     }
-    
+
 }

@@ -25,6 +25,7 @@ public class ClienteController {
     private ClienteService service;
 
     @GetMapping(value = "/greet/{name}")
+    @CrossOrigin("http://localhost:4200/")
     public String greet(@PathVariable(value = "name") String name){
         return  "Hello, "+name;
     }
@@ -34,8 +35,13 @@ public class ClienteController {
         return new ResponseEntity(service.list(), HttpStatus.OK);
     }
     
+    @GetMapping(value = "/list")
+    public ResponseEntity listId(@PathVariable(value = "cep") String cep){
+        return new ResponseEntity(service.listId(), HttpStatus.OK);
+    }    
     
     @PostMapping(value = "/add")
+        @CrossOrigin("http://localhost:4200/")
     public ResponseEntity add(@RequestBody ClienteModel cliente){
         return new ResponseEntity(service.add(cliente), HttpStatus.OK);
     }
