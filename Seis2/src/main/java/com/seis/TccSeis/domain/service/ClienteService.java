@@ -7,16 +7,18 @@ package com.seis.TccSeis.domain.service;
 
 import com.seis.TccSeis.domain.model.ClienteModel;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author devsys-a
  */
+@Service
 public interface ClienteService {
     
     List<ClienteModel> list();
     
-    List<ClienteModel> listId();
+    //List<ClienteModel> listId(String cep); 
 
     Boolean add(ClienteModel cliente);
 

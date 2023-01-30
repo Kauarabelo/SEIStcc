@@ -20,6 +20,7 @@ import com.seis.TccSeis.api.firebase.FirebaseInitializer;
 import com.seis.TccSeis.domain.service.ClienteService;
 import com.seis.TccSeis.domain.model.ClienteModel;
 
+
 /**
  *
  * @author devsys-a
@@ -50,26 +51,7 @@ public class ClienteManagementServiceImpl implements ClienteService {
         }
     }
 
-    @Override
-    public List<ClienteModel> listId(String cpf) {
-        List<ClienteModel> response = new ArrayList<>();
-        ClienteModel cliente;
-        ApiFuture<QuerySnapshot> querySnapshotApiFuture = getCollection().get().doc.whereEqualTo("cpf", "cpf");
-        try {
-            for (DocumentSnapshot doc : querySnapshotApiFuture.get().getDocuments()) {
-                if (whereEqualTo("cpf", "cpf")) {
-                    cliente = doc.toObject(ClienteModel.class);
-                    //Arrumar doc.getId
-                    cliente.setCpf(doc.getId());
-                    response.add(cliente);
-                }
-            }
-            return response;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+   
 
     public Boolean delete(String id_Cliente) {
         ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Cliente).delete();
@@ -103,7 +85,7 @@ public class ClienteManagementServiceImpl implements ClienteService {
     @Override
     public Boolean edit(String id_Cliente, ClienteModel cliente) {
         Map<String, Object> docData = getDocData(cliente);
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Cliente).set(docData);
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Cliente).getId(id_Cliente);
         try {
             if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
@@ -114,18 +96,6 @@ public class ClienteManagementServiceImpl implements ClienteService {
         }
     }
 
-    @Override
-    public Boolean delete(String id_Cliente) {
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Cliente).delete();
-        try {
-            if (null != writeResultApiFuture.get()) {
-                return Boolean.TRUE;
-            }
-            return Boolean.FALSE;
-        } catch (Exception e) {
-            return Boolean.FALSE;
-        }
-    }
 
     private CollectionReference getCollection() {
         return firebase.getFirestore().collection("Cliente");
@@ -154,7 +124,7 @@ public class ClienteManagementServiceImpl implements ClienteService {
         docData.put("transportador", cliente.getTransportador());
         docData.put("baseOrigem", cliente.getBaseOrigem());
         docData.put("baseColeta", cliente.getBaseColeta());
-
+        
         return docData;
     }
 
