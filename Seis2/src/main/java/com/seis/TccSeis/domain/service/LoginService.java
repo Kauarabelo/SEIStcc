@@ -1,26 +1,26 @@
-///*
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
-// */
-//package com.seis.TccSeis.domain.service;
-//
-//import com.seis.TccSeis.domain.model.LoginModel;
-//import java.util.List;
-//
-///**
-// *
-// * @author kauar
-// */
-//public interface LoginService {
-//    
-//    List<LoginModel> list();
-//    
-//    Boolean login(LoginModel cliente);
-//
-//    Boolean register(LoginModel cliente);
-//
-//    Boolean edit(String email,LoginModel cliente);
-//
-//    Boolean delete(String email); 
-//    
-//}
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.seis.TccSeis.domain.service;
+
+import com.seis.TccSeis.domain.model.LoginModel;
+import java.util.List;
+
+/**
+ *
+ * @author devsys-a
+ */
+public interface LoginService {
+    
+    List<LoginModel> list();
+    
+    LoginModel getLogin(LoginModel dadosLogin);
+
+    Boolean add(LoginModel login);
+
+    Boolean edit(String id,LoginModel login);
+
+    Boolean delete(String id); 
+}

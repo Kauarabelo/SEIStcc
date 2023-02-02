@@ -24,11 +24,11 @@ public class ClienteController {
     @Autowired
     private ClienteService service;
 
-    @GetMapping(value = "/greet/{name}")
-    @CrossOrigin("http://localhost:4200/")
-    public String greet(@PathVariable(value = "name") String name){
-        return  "Hello, "+name;
-    }
+//    @GetMapping(value = "/greet/{name}")
+//    @CrossOrigin("http://localhost:4200/")
+//    public String greet(@PathVariable(value = "name") String name){
+//        return  "Hello, "+name;
+//    }
 
     @GetMapping(value = "/list")
     public ResponseEntity list(){

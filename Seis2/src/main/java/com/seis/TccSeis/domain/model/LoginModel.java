@@ -1,34 +1,57 @@
-///*
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-// * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
-// */
-//package com.seis.TccSeis.domain.model;
-//
-//import com.google.firebase.auth.FirebaseAuth;
-//import javax.validation.constraints.NotBlank;
-//import lombok.Data;
-//import lombok.NonNull;
-//import org.springframework.scheduling.config.Task;
-//
-///**
-// *
-// * @author kauar
-// */
-//@Data
-//public class LoginModel {
-//
-//    @NotBlank
-//    private String email;
-//
-//    @NotBlank
-//    private String password;
-//
-//    private FirebaseAuth mAuth;
-//
-//    public void createUser() {
-//        String email = "denis@denis.com.com";
-//        String password = "42378942";
-//        
-//    }
-//
-//}
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.seis.TccSeis.domain.model;
+
+/**
+ *
+ * @author kauar
+ */
+
+public class LoginModel {
+    
+    private String id;
+    private String email;
+    private String password;
+
+    public LoginModel() {
+        //Defalt
+    }
+
+    public LoginModel(String id, String email, String password) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+      
+    public String toString() {
+        return this.id + " | " + this.email + " | " + this.password;
+    }
+
+}

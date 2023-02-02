@@ -31,9 +31,7 @@ public class FirebaseInitializer {
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .setDatabaseUrl("https://seis-7c7c6-default-rtdb.firebaseio.com/")
-                .build();
-        
-        
+                .build();     
 
         if(FirebaseApp.getApps().isEmpty()){
             FirebaseApp.initializeApp(options);
@@ -45,3 +43,5 @@ public class FirebaseInitializer {
         return FirestoreClient.getFirestore();
     }
 }
+
+

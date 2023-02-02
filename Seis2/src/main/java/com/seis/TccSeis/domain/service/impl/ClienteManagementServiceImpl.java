@@ -85,7 +85,7 @@ public class ClienteManagementServiceImpl implements ClienteService {
     @Override
     public Boolean edit(String id_Cliente, ClienteModel cliente) {
         Map<String, Object> docData = getDocData(cliente);
-        ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Cliente).getId(id_Cliente);
+        ApiFuture<WriteResult> writeResultApiFuture = getCollection().document(id_Cliente).set(id_Cliente);
         try {
             if (null != writeResultApiFuture.get()) {
                 return Boolean.TRUE;
